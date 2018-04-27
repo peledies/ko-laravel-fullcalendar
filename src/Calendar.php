@@ -44,9 +44,11 @@ class Calendar
      * @param Factory         $view
      * @param EventCollection $events
      */
-    public function __construct( EventCollection $events )
+    public function __construct( EventCollection $events = null )
     {
-        $this->events = $events;
+        if( !is_null($events) ){
+            $this->addEvents( $events );
+        }
         $this->id = str_random(8);
     }
 
@@ -68,11 +70,8 @@ class Calendar
      */
     public function script()
     {
-        $options = $this->getOptionsJson();
-
-        return $this->view->make('fullcalendar::script', [
-            'id' => $this->getId(),
-            'options' => $options,
+        return view()->make('Fullcalendar::script',[
+            'id'=>$this->id
         ]);
     }
 
@@ -108,17 +107,15 @@ class Calendar
     }
 
     /**
-     * Add multiple events
+     * Add an event collection
      *
-     * @param array|ArrayAccess $events
+     * @param Event $event
      * @param array $customAttributes
      * @return $this
      */
-    public function addEvents($events, array $customAttributes = [])
+    public function addEvents(EventCollection $events)
     {
-        foreach ($events as $event) {
-            $this->events->push($event, $customAttributes);
-        }
+        $this->events = $events;
 
         return $this;
     }

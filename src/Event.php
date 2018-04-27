@@ -44,14 +44,14 @@ class Event
         , 'end'
     ];
 
-    public function __construct(array $defaults = null)
+    public function __construct(array $data = null)
     {
-        if($defaults){
-            $this->fill( $defaults );
+        if($data){
+            $this->build( $data );
         }
     }
 
-    public function fill( $data )
+    public function build( $data )
     {
         foreach ($data as $key => $value) {
             if( property_exists($this, $key) ){
