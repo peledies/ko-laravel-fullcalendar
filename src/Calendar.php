@@ -10,14 +10,9 @@ class Calendar
 {
 
     /**
-     * @var Factory
-     */
-    protected $view;
-
-    /**
      * @var EventCollection
      */
-    protected $eventCollection;
+    protected $events;
 
     /**
      * @var string
@@ -39,13 +34,6 @@ class Calendar
     ];
 
     /**
-     * User defined options
-     *
-     * @var array
-     */
-    protected $userOptions = [];
-
-    /**
      * User defined callback options
      *
      * @var array
@@ -54,36 +42,21 @@ class Calendar
 
     /**
      * @param Factory         $view
-     * @param EventCollection $eventCollection
+     * @param EventCollection $events
      */
-    public function __construct(Factory $view, EventCollection $eventCollection)
+    public function __construct( EventCollection $events )
     {
-        $this->view            = $view;
-        $this->eventCollection = $eventCollection;
+        $this->events = $events;
+        $this->id = str_random(8);
     }
 
-    /**
-     * Create an event DTO to add to a calendar
-     *
-     * @param string          $title
-     * @param string          $isAllDay
-     * @param string|DateTime $start If string, must be valid datetime format: http://bit.ly/1z7QWbg
-     * @param string|DateTime $end   If string, must be valid datetime format: http://bit.ly/1z7QWbg
-     * @param string          $id    event Id
-     * @param array           $options
-     * @return SimpleEvent
-     */
-    public static function event($title, $isAllDay, $start, $end, $id = null, $options = [])
-    {
-        return new SimpleEvent($title, $isAllDay, $start, $end, $id, $options);
-    }
 
     /**
      * Create the <div> the calendar will be rendered into
      *
      * @return string
      */
-    public function calendar()
+    public function html()
     {
         return '<div id="calendar-' . $this->getId() . '"></div>';
     }
@@ -101,19 +74,6 @@ class Calendar
             'id' => $this->getId(),
             'options' => $options,
         ]);
-    }
-
-    /**
-     * Customize the ID of the generated <div>
-     *
-     * @param string $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -140,9 +100,9 @@ class Calendar
      * @param array $customAttributes
      * @return $this
      */
-    public function addEvent(Event $event, array $customAttributes = [])
+    public function addEvent(Event $event)
     {
-        $this->eventCollection->push($event, $customAttributes);
+        $this->events->push( $event );
 
         return $this;
     }
@@ -157,7 +117,7 @@ class Calendar
     public function addEvents($events, array $customAttributes = [])
     {
         foreach ($events as $event) {
-            $this->eventCollection->push($event, $customAttributes);
+            $this->events->push($event, $customAttributes);
         }
 
         return $this;
@@ -222,7 +182,7 @@ class Calendar
 
         // Allow the user to override the events list with a url
         if (!isset($parameters['events'])) {
-            $parameters['events'] = $this->eventCollection->toArray();
+            $parameters['events'] = $this->events->toArray();
         }
 
         $json = json_encode($parameters);
