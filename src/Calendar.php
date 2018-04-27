@@ -52,6 +52,16 @@ class Calendar
         $this->id = str_random(8);
     }
 
+    public function cdn($asset, $type, $version){
+        if(strtolower($asset) == 'fullcalendar' && strtolower($type) == 'js'){
+            return "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/$version/fullcalendar.min.js\"></script>";
+        }else if( strtolower($asset) == 'fullcalendar' && strtolower($type) == 'css' ){
+            return "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/$version/fullcalendar.min.css\" rel=\"stylesheet\" type=\"text/css\">";
+        }else if( strtolower($asset) == 'moment' && strtolower($type) == 'js' ){
+            return "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/moment.js/$version/moment.min.js\"></script>";
+        }
+
+    }
 
     /**
      * Create the <div> the calendar will be rendered into
