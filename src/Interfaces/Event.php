@@ -1,6 +1,6 @@
 <?php
 
-namespace KO\Fullcalendar\Interface;
+namespace KO\Fullcalendar\Interfaces;
 
 use DateTime;
 

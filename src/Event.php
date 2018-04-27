@@ -2,11 +2,11 @@
 
 namespace KO\Fullcalendar;
 
-use Interface\Event as EventInterface;
+use Interfaces\Event as EventInterface;
 use DateTime;
 
 /**
- * Class SimpleEvent
+ * Class Event
  *
  * Simple DTO that implements the Event interface
  *
