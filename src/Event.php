@@ -7,7 +7,7 @@ namespace KO\Fullcalendar;
  * @package KO\Fullcalendar
  */
 class Event
-
+{
     /**
      * @var string|int|null
      */
