@@ -1,5 +1,5 @@
 <?php
-namespace KO\FullCalendar\Providers;
+namespace KO\Fullcalendar\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
