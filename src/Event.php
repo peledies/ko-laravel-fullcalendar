@@ -1,8 +1,6 @@
 <?php 
-
 namespace KO\Fullcalendar;
 
-use Interfaces\Event as EventInterface;
 use DateTime;
 
 /**
@@ -12,7 +10,7 @@ use DateTime;
  *
  * @package KO\Fullcalendar
  */
-class Event implements EventInterface
+class Event implements Interfaces\Event
 {
 
     /**
