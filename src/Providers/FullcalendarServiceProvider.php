@@ -12,9 +12,9 @@ class FullcalendarServiceProvider extends ServiceProvider {
 
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/fullcalendar.php');
+        //$this->loadRoutesFrom(__DIR__.'/../routes/fullcalendar.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'Fullcalendar');
-        $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
+        //$this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
         $this->publishes([
           __DIR__.'/../config/Fullcalendar.php' => config_path('Fullcalendar.php'),
