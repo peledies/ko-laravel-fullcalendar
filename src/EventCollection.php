@@ -1,8 +1,5 @@
 <?php
-
 namespace KO\Fullcalendar;
-
-use Illuminate\Support\Collection;
 
 class EventCollection
 {
@@ -14,12 +11,12 @@ class EventCollection
 
     public function __construct()
     {
-        $this->events = new Collection();
+        $this->events = collect([]);
     }
 
-    public function push(Event $event, array $customAttributes = [])
+    public function push(Event $event)
     {
-        $this->events->push($this->convertToArray($event, $customAttributes));
+        $this->events->push( $event );
     }
 
     public function toJson()
@@ -32,27 +29,4 @@ class EventCollection
         return $this->events->toArray();
     }
 
-    private function convertToArray(Event $event, array $customAttributes = [])
-    {
-        $eventArray = [
-            'id' => $this->getEventId($event),
-            'title' => $event->getTitle(),
-            'allDay' => $event->isAllDay(),
-            'start' => $event->getStart()->format('c'),
-            'end' => $event->getEnd()->format('c'),
-        ];
-
-        $eventOptions = method_exists($event, 'getEventOptions') ? $event->getEventOptions() : [];
-
-        return array_merge($eventArray, $eventOptions, $customAttributes);
-    }
-
-    private function getEventId(Event $event)
-    {
-        if ($event instanceof IdentifiableEvent) {
-            return $event->getId();
-        }
-
-        return null;
-    }
 }
