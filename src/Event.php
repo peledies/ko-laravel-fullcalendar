@@ -1,17 +1,12 @@
 <?php 
 namespace KO\Fullcalendar;
 
-use DateTime;
-
 /**
  * Class Event
  *
- * Simple DTO that implements the Event interface
- *
  * @package KO\Fullcalendar
  */
-class Event implements Interfaces\Event
-{
+class Event
 
     /**
      * @var string|int|null
@@ -26,15 +21,15 @@ class Event implements Interfaces\Event
     /**
      * @var bool
      */
-    public $isAllDay;
+    public $allDay;
 
     /**
-     * @var DateTime
+     * @var Carbon
      */
     public $start;
 
     /**
-     * @var DateTime
+     * @var Carbon
      */
     public $end;
 
