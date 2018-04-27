@@ -7,7 +7,7 @@ class FullcalendarServiceProvider extends ServiceProvider {
     public function register()
     {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('FullCalendar', 'KO\FullCalendar\Calendar');
+        $loader->alias('FullCalendar', 'KO\Fullcalendar\Calendar');
     }
 
     public function boot()

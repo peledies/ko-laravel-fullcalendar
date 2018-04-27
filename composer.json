@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "KO\\FullCalendar\\Providers\\FullcalendarServiceProvider"
+                "KO\\Fullcalendar\\Providers\\FullcalendarServiceProvider"
             ]
         }
     },
