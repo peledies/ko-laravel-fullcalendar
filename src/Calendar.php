@@ -80,16 +80,23 @@ class Calendar
      */
     public function script()
     {
+
+        $json = json_encode( 
+            array_merge(
+                  ['events' => $this->events()->convert()]
+                , $this->defaultOptions
+            ), JSON_PRETTY_PRINT
+        );
+
         return "<script>
             $(document).ready(function(){
                 console.log('asdf');
-                $('#calendar-$this->id').fullCalendar( {events:".json_encode($this->events()->convert())."} );
+                $('#calendar-$this->id').fullCalendar( 
+                    $json
+                );
             });
         </script>";
-        /*return view('Fullcalendar::script',[
-              'id'=>$this->id
-            , 'events' => json_encode( $this->events()->convert() )
-        ]);*/
+
     }
 
     /**
