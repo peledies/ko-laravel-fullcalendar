@@ -1,5 +1,6 @@
 <script>
     $(document).ready(function(){
-        $('#calendar-{{ $id }}').fullCalendar({!! $options !!});
+        console.log('asdf');
+        $('#calendar-{{ $id }}').fullCalendar();
     });
 </script>

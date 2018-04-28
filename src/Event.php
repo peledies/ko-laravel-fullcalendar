@@ -39,7 +39,7 @@ class Event
     private $options;
 
     // these fields get converted to carbon dates
-    private $dates = [
+    protected $dates = [
           'start'
         , 'end'
     ];
@@ -72,5 +72,15 @@ class Event
     public function get( $property )
     {
         return $this->$property;
+    }
+
+    public function convert()
+    {
+        $event = new \stdClass();
+        $event->id = $this->id;
+        $event->title = $this->title;
+        $event->start = ($this->start) ? $this->start->format('Y-m-d\TH:i:s') : null;
+        $event->end = ($this->end) ? $this->end->format('Y-m-d\TH:i:s') : null;
+        return $event;
     }
 }

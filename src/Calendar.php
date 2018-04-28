@@ -12,7 +12,7 @@ class Calendar
     /**
      * @var EventCollection
      */
-    protected $events;
+    public $events;
 
     /**
      * @var string
@@ -70,7 +70,7 @@ class Calendar
      */
     public function html()
     {
-        return '<div id="calendar-' . $this->getId() . '"></div>';
+        return '<div id="calendar-' . $this->id . '"></div>';
     }
 
     /**
@@ -80,9 +80,16 @@ class Calendar
      */
     public function script()
     {
-        return view()->make('Fullcalendar::script',[
-            'id'=>$this->id
-        ]);
+        return "<script>
+            $(document).ready(function(){
+                console.log('asdf');
+                $('#calendar-$this->id').fullCalendar( {events:".json_encode($this->events()->convert())."} );
+            });
+        </script>";
+        /*return view('Fullcalendar::script',[
+              'id'=>$this->id
+            , 'events' => json_encode( $this->events()->convert() )
+        ]);*/
     }
 
     /**
@@ -100,6 +107,11 @@ class Calendar
         $this->id = str_random(8);
 
         return $this->id;
+    }
+
+    public function events()
+    {
+        return $this->events;
     }
 
     /**
