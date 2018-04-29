@@ -1,58 +1,71 @@
-[![Latest Stable Version](https://poser.pugx.org/ko/laravel-fullcalendar/v/stable)](https://packagist.org/packages/ko/laravel-fullcalendar) [![Latest Unstable Version](https://poser.pugx.org/ko/laravel-fullcalendar/v/unstable)](https://packagist.org/packages/ko/laravel-fullcalendar) [![Total Downloads](https://poser.pugx.org/ko/laravel-fullcalendar/downloads)](https://packagist.org/packages/ko/laravel-fullcalendar)
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
+
+# ko-laravel-fullcalendar
+This package is a composer installable helper for working with fullcalendar.io in a laravel app.
 
 
+## Usage 
 
-
+### Building an `Event`
 ```
-    @php
-        $event = new \KO\Fullcalendar\Event();
-        $event->build(['id'=>'asdf', 'start' => '03-03-1982']);
+$event = new \KO\Fullcalendar\Event();
+$event->build(['id'=>'asdf', 'title' => 'test', 'start' => '20-04-2018']);
+```
 
-        $events = new \KO\Fullcalendar\EventCollection();
-        $events->push( $event );
+### Adding an `Event` to an `EventCollection`
+``` 
+$events = new \KO\Fullcalendar\EventCollection();
+$events->push( $event );
+```
 
-        $calendar = new \KO\Fullcalendar\Calendar();
-        $calendar->addEvents( $events );
-        $calendar->addEvent( $event );
 
-        dump( $calendar );
-    @endphp
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+### Custom options
+```
+$options = new \KO\Fullcalendar\Options([
+    'header' => [
+        'right' => 'prev,next today',
+        'center' => 'title',
+        'left' => 'month,agendaWeek,agendaDay',
+    ],
+    'eventLimit' => true,
+]);
+```
 
-        <title>Laravel</title>
+### Instantiate a new `Calendar`
+```
+$calendar = new \KO\Fullcalendar\Calendar();
+$calendar->addEvents( $events );
+$calendar->setOptions( $options );
+```
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+### Draw the calendar
+In your blade, add the following where you would like the calendar to be drawn.
+```
+  {!! $calendar->html() !!}
+```
 
-        {!! $calendar->cdn('fullcalendar', 'css', '3.9.0') !!}
+## CDN 
+This package has a helper method for building the appropriate `style` and `javascript` assets from a CDN. Just add the following to your html to load the appropriate resources.
 
-        <!-- Styles -->
-        <style>
+Fullcalendar css
+```
+{!! $calendar->cdn('fullcalendar', 'css', '3.9.0') !!}
+```
 
-        </style>
-    </head>
+Fullcalendar js
+```
+{!! $calendar->cdn('fullcalendar', 'js', '3.9.0') !!}
+```
 
-    <body>
-        <div class="flex-center position-ref full-height">
-           
-            <div class="content">
-                {!! $calendar->html() !!}
-            </div>
-        </div>
+Moment js
+```
+{!! $calendar->cdn('moment', 'js', '2.22.1') !!}
 
-        <script
-            src="http://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-
-        {!! $calendar->cdn('moment', 'js', '2.22.1') !!}
-        {!! $calendar->cdn('fullcalendar', 'js', '3.9.0') !!}
-        {!! $calendar->script() !!}
-    </body>
-</html>
 ```

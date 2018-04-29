@@ -33,6 +33,7 @@ class Calendar
         'eventLimit' => true,
     ];
 
+    protected $options = null;
     /**
      * User defined callback options
      *
@@ -44,11 +45,16 @@ class Calendar
      * @param Factory         $view
      * @param EventCollection $events
      */
-    public function __construct( EventCollection $events = null )
+    public function __construct( EventCollection $events = null, OptionCollection $options = null )
     {
         if( !is_null($events) ){
             $this->addEvents( $events );
         }
+
+        $this->options = ( !is_null( $options) )
+            ? array_merge($this->defaultOptions, $options)
+            : $this->defaultOptions;
+        
         $this->id = str_random(8);
     }
 
@@ -84,7 +90,7 @@ class Calendar
         $json = json_encode( 
             array_merge(
                   ['events' => $this->events()->convert()]
-                , $this->defaultOptions
+                , $this->options
             ), JSON_PRETTY_PRINT
         );
 
@@ -155,9 +161,9 @@ class Calendar
      * @param array $options
      * @return $this
      */
-    public function setOptions(array $options)
+    public function setOptions(Options $options)
     {
-        $this->userOptions = $options;
+        $this->options = array_merge($this->defaultOptions, (array) $options);
 
         return $this;
     }
@@ -195,31 +201,6 @@ class Calendar
         return $this->callbacks;
     }
 
-    /**
-     * Get options+events JSON
-     *
-     * @return string
-     */
-    public function getOptionsJson()
-    {
-        $options      = $this->getOptions();
-        $placeholders = $this->getCallbackPlaceholders();
-        $parameters   = array_merge($options, $placeholders);
-
-        // Allow the user to override the events list with a url
-        if (!isset($parameters['events'])) {
-            $parameters['events'] = $this->events->toArray();
-        }
-
-        $json = json_encode($parameters);
-
-        if ($placeholders) {
-            return $this->replaceCallbackPlaceholders($json, $placeholders);
-        }
-
-        return $json;
-
-    }
 
     /**
      * Generate placeholders for callbacks, will be replaced after JSON encoding
