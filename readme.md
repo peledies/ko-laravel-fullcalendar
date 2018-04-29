@@ -1,7 +1,10 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
-[![Latest Stable Version](https://poser.pugx.org/ko/laravel-fullcalendar/v/stable)](https://packagist.org/packages/ko/laravel-fullcalendar) [![Latest Unstable Version](https://poser.pugx.org/ko/laravel-fullcalendar/v/unstable)](https://packagist.org/packages/ko/laravel-fullcalendar) [![Total Downloads](https://poser.pugx.org/ko/laravel-fullcalendar/downloads)](https://packagist.org/packages/ko/laravel-fullcalendar)
+  <a href="https://packagist.org/packages/ko/laravel-fullcalendar"><img src="https://poser.pugx.org/ko/laravel-fullcalendar/v/stable" alt="Latest Stable Version"></a>
+  <a href="https://packagist.org/packages/ko/laravel-fullcalendar"><img src="https://poser.pugx.org/ko/laravel-fullcalendar/v/unstable" alt="Latest Unstable Version"></a>
+  <a href="https://packagist.org/packages/ko/laravel-fullcalendar"><img src="https://poser.pugx.org/ko/laravel-fullcalendar/downloads" alt="Total Downloads"></a>
+  <a href="https://packagist.org/packages/ko/laravel-fullcalendar"><img src="https://poser.pugx.org/ko/laravel-fullcalendar/license" alt="License"></a>
 </p>
 
 # ko-laravel-fullcalendar
