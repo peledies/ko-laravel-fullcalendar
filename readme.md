@@ -1,10 +1,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+[![Latest Stable Version](https://poser.pugx.org/ko/laravel-fullcalendar/v/stable)](https://packagist.org/packages/ko/laravel-fullcalendar) [![Latest Unstable Version](https://poser.pugx.org/ko/laravel-fullcalendar/v/unstable)](https://packagist.org/packages/ko/laravel-fullcalendar) [![Total Downloads](https://poser.pugx.org/ko/laravel-fullcalendar/downloads)](https://packagist.org/packages/ko/laravel-fullcalendar)
 </p>
 
 # ko-laravel-fullcalendar
