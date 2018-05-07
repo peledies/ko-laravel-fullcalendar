@@ -6,37 +6,8 @@ namespace KO\Fullcalendar;
  *
  * @package KO\Fullcalendar
  */
-class Event
+class Event extends \Illuminate\Database\Eloquent\Model
 {
-    /**
-     * @var string|int|null
-     */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $title;
-
-    /**
-     * @var bool
-     */
-    public $allDay;
-
-    /**
-     * @var Carbon
-     */
-    public $start;
-
-    /**
-     * @var Carbon
-     */
-    public $end;
-
-    /**
-     * @var array
-     */
-    private $options;
 
     // these fields get converted to carbon dates
     protected $dates = [
@@ -54,12 +25,10 @@ class Event
     public function build( $data )
     {
         foreach ($data as $key => $value) {
-            if( property_exists($this, $key) ){
-                if( in_array($key, $this->dates) ){
-                    $this->$key = ( $value instanceof \Carbon\Carbon ) ? $value : new \Carbon\Carbon($value);
-                }else{
-                    $this->$key = $value;
-                }
+            if( in_array($key, $this->dates) ){
+                $this->$key = ( $value instanceof \Carbon\Carbon ) ? $value : new \Carbon\Carbon($value);
+            }else{
+                $this->$key = $value;
             }
         }
     }
