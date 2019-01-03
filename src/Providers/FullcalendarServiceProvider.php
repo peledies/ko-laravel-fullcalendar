@@ -33,6 +33,10 @@ class FullcalendarServiceProvider extends ServiceProvider {
         ], 'css');
 
         $this->publishes([
+          __DIR__.'/../public/js' => public_path('fullcalendar/js'),
+        ], 'js');
+
+        $this->publishes([
           __DIR__.'/../public/img' => public_path('fullcalendar/img'),
         ], 'img');
 
